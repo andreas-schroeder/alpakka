@@ -6,6 +6,8 @@ package akka.stream.alpakka.jms
 
 import java.time.Duration
 import java.util.concurrent.atomic.AtomicBoolean
+
+import akka.stream.alpakka.jms.impl.{JmsAckSession, JmsTxSession}
 import javax.jms
 import javax.jms.{ConnectionFactory, Message}
 

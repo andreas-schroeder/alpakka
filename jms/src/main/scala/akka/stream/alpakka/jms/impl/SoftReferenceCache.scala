@@ -14,7 +14,7 @@ import scala.ref.SoftReference
  * Thread. Other synchronization tasks are not necessary.
  *
  * Use in other places is not recommended.
- * see [[akka.stream.alpakka.jms.JmsMessageProducer]]
+ * see [[JmsMessageProducer]]
  *
  * @tparam K cache key type
  * @tparam V cache value type

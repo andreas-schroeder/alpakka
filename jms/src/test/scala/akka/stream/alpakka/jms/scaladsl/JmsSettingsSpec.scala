@@ -19,6 +19,7 @@ class JmsSettingsSpec extends JmsSpec {
         .withSessionCount(10)
         .withTimeToLive(Duration.ofHours(1))
       //#producer-settings
+      settings.destination shouldBe defined
     }
   }
 }

@@ -6,10 +6,13 @@ package akka.stream.alpakka.jms.javadsl;
 
 import akka.stream.alpakka.jms.Credentials;
 import akka.stream.alpakka.jms.JmsProducerSettings;
+import akka.stream.alpakka.jms.Topic;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.junit.Test;
 
 import java.time.Duration;
+
+import static org.junit.Assert.assertEquals;
 
 public class JmsSettingsTest {
 
@@ -23,5 +26,7 @@ public class JmsSettingsTest {
             .withSessionCount(10)
             .withTimeToLive(Duration.ofHours(1));
     // #producer-settings
+
+    assertEquals(settings.destination().get(), new Topic("target-topic"))
   }
 }

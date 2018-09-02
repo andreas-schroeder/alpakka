@@ -2,16 +2,18 @@
  * Copyright (C) 2016-2018 Lightbend Inc. <http://www.lightbend.com>
  */
 
-package akka.stream.alpakka.jms
+package akka.stream.alpakka.jms.impl
 
 import java.util.concurrent.Semaphore
 import java.util.concurrent.atomic.AtomicBoolean
-import javax.jms._
 
 import akka.Done
+import akka.annotation.InternalApi
 import akka.stream._
+import akka.stream.alpakka.jms._
 import akka.stream.stage._
 import akka.util.OptionVal
+import javax.jms._
 
 import scala.annotation.tailrec
 import scala.collection.mutable
@@ -19,7 +21,7 @@ import scala.concurrent.Future
 import scala.util.control.NonFatal
 import scala.util.{Failure, Success}
 
-private[jms] final class JmsConsumerStage(settings: JmsConsumerSettings)
+@InternalApi private[jms] final class JmsConsumerStage(settings: JmsConsumerSettings)
     extends GraphStageWithMaterializedValue[SourceShape[Message], KillSwitch] {
 
   private val out = Outlet[Message]("JmsConsumer.out")
@@ -65,7 +67,7 @@ private[jms] final class JmsConsumerStage(settings: JmsConsumerSettings)
   }
 }
 
-final class JmsAckSourceStage(settings: JmsConsumerSettings)
+@InternalApi private[jms] final class JmsAckSourceStage(settings: JmsConsumerSettings)
     extends GraphStageWithMaterializedValue[SourceShape[AckEnvelope], KillSwitch] {
 
   private val out = Outlet[AckEnvelope]("JmsSource.out")
@@ -150,7 +152,7 @@ final class JmsAckSourceStage(settings: JmsConsumerSettings)
   }
 }
 
-final class JmsTxSourceStage(settings: JmsConsumerSettings)
+@InternalApi private[jms] final class JmsTxSourceStage(settings: JmsConsumerSettings)
     extends GraphStageWithMaterializedValue[SourceShape[TxEnvelope], KillSwitch] {
 
   private val out = Outlet[TxEnvelope]("JmsSource.out")
@@ -205,10 +207,10 @@ final class JmsTxSourceStage(settings: JmsConsumerSettings)
   }
 }
 
-abstract class SourceStageLogic[T](shape: SourceShape[T],
-                                   out: Outlet[T],
-                                   settings: JmsConsumerSettings,
-                                   attributes: Attributes)
+@InternalApi private[jms] abstract class SourceStageLogic[T](shape: SourceShape[T],
+                                                             out: Outlet[T],
+                                                             settings: JmsConsumerSettings,
+                                                             attributes: Attributes)
     extends GraphStageLogic(shape)
     with JmsConsumerConnector
     with StageLogging {

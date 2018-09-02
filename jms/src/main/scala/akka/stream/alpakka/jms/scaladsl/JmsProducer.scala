@@ -6,6 +6,7 @@ package akka.stream.alpakka.jms.scaladsl
 
 import akka.{Done, NotUsed}
 import akka.stream.alpakka.jms._
+import akka.stream.alpakka.jms.impl.JmsProducerStage
 import akka.stream.scaladsl.{Flow, Keep, Sink}
 
 import scala.concurrent.Future

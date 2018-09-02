@@ -5,10 +5,10 @@
 package akka.stream.alpakka.jms.javadsl
 
 import javax.jms.Message
-
 import akka.NotUsed
 import akka.stream.KillSwitch
 import akka.stream.alpakka.jms._
+import akka.stream.alpakka.jms.impl.{JmsAckSourceStage, JmsBrowseStage, JmsConsumerStage, JmsTxSourceStage}
 
 import scala.collection.JavaConversions
 

@@ -5,10 +5,10 @@
 package akka.stream.alpakka.jms.scaladsl
 
 import javax.jms._
-
 import akka.NotUsed
 import akka.stream.KillSwitch
 import akka.stream.alpakka.jms._
+import akka.stream.alpakka.jms.impl.{JmsAckSourceStage, JmsBrowseStage, JmsConsumerStage, JmsTxSourceStage}
 import akka.stream.scaladsl.Source
 
 import scala.collection.JavaConversions._

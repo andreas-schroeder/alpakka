@@ -2,20 +2,22 @@
  * Copyright (C) 2016-2018 Lightbend Inc. <http://www.lightbend.com>
  */
 
-package akka.stream.alpakka.jms
+package akka.stream.alpakka.jms.impl
 
+import akka.annotation.InternalApi
 import akka.stream.ActorAttributes.SupervisionStrategy
 import akka.stream._
-import akka.stream.alpakka.jms.JmsProducerStage._
+import akka.stream.alpakka.jms.impl.JmsProducerStage._
+import akka.stream.alpakka.jms.{JmsMessage, JmsProducerSettings}
 import akka.stream.impl.{Buffer, ReactiveStreamsCompliance}
 import akka.stream.stage._
 import akka.util.OptionVal
 
 import scala.concurrent.Future
-import scala.util.{Failure, Success, Try}
 import scala.util.control.{NoStackTrace, NonFatal}
+import scala.util.{Failure, Success, Try}
 
-private[jms] final class JmsProducerStage[A <: JmsMessage](settings: JmsProducerSettings)
+@InternalApi private[jms] final class JmsProducerStage[A <: JmsMessage](settings: JmsProducerSettings)
     extends GraphStage[FlowShape[A, A]] {
 
   private val in = Inlet[A]("JmsProducer.in")
@@ -124,7 +126,7 @@ private[jms] final class JmsProducerStage[A <: JmsMessage](settings: JmsProducer
     }
 }
 
-private[jms] object JmsProducerStage {
+@InternalApi private[jms] object JmsProducerStage {
 
   val NotYetThere = Failure(new Exception with NoStackTrace)
 

@@ -2,15 +2,18 @@
  * Copyright (C) 2016-2018 Lightbend Inc. <http://www.lightbend.com>
  */
 
-package akka.stream.alpakka.jms
+package akka.stream.alpakka.jms.impl
 
-import javax.jms._
-
-import akka.stream.{ActorAttributes, Attributes, Outlet, SourceShape}
-import akka.stream.stage.{GraphStage, GraphStageLogic, OutHandler}
 import java.util.{Enumeration => JEnumeration}
 
-private[jms] final class JmsBrowseStage(settings: JmsBrowseSettings) extends GraphStage[SourceShape[Message]] {
+import akka.annotation.InternalApi
+import akka.stream.alpakka.jms.{AcknowledgeMode, JmsBrowseSettings}
+import akka.stream.stage.{GraphStage, GraphStageLogic, OutHandler}
+import akka.stream.{ActorAttributes, Attributes, Outlet, SourceShape}
+import javax.jms._
+
+@InternalApi private[jms] final class JmsBrowseStage(settings: JmsBrowseSettings)
+    extends GraphStage[SourceShape[Message]] {
   private val queue = settings.destination.getOrElse { throw new IllegalArgumentException("Destination is missing") }
 
   private val out = Outlet[Message]("JmsBrowseStage.out")
