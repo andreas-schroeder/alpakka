@@ -4,10 +4,10 @@
 
 package akka.stream.alpakka.jms
 
-import scala.collection.JavaConverters._
 import java.util
 import java.util.concurrent.TimeUnit
 
+import scala.collection.JavaConverters._
 import scala.concurrent.duration.Duration
 
 sealed trait JmsHeader {
@@ -112,7 +112,7 @@ sealed trait JmsMessage {
   def headers: Set[JmsHeader]
 
   /**
-   * Java API: adds a Jms header e.g. JMSType to [[JmsMessage]]
+   * Java API: adds a Jms header e.g. JmsType to [[JmsMessage]]
    */
   def withHeader(jmsHeader: JmsHeader): JmsMessage
 
@@ -190,7 +190,7 @@ final case class JmsByteMessage(bytes: Array[Byte],
     extends JmsAbstractByteMessage {
 
   /**
-   * Java API: adds a Jms header e.g. JMSType to [[JmsByteMessage]]
+   * Java API: adds a Jms header e.g. JmsType to [[JmsByteMessage]]
    */
   def withHeader(jmsHeader: JmsHeader): JmsByteMessage = copy(headers = headers + jmsHeader)
 
@@ -208,7 +208,7 @@ final case class JmsDirectedByteMessage(bytes: Array[Byte],
     with JmsDirectedMessage {
 
   /**
-   * Java API: adds a Jms header e.g. JMSType to [[JmsByteMessage]]
+   * Java API: adds a Jms header e.g. JmsType to [[JmsByteMessage]]
    */
   def withHeader(jmsHeader: JmsHeader): JmsDirectedByteMessage = copy(headers = headers + jmsHeader)
 
@@ -252,7 +252,7 @@ final case class JmsMapMessage(body: Map[String, Any],
     extends JmsAbstractMapMessage {
 
   /**
-   * Java API: adds a Jms header e.g. JMSType to [[JmsMapMessage]]
+   * Java API: adds a Jms header e.g. JmsType to [[JmsMapMessage]]
    */
   def withHeader(jmsHeader: JmsHeader): JmsMapMessage = copy(headers = headers + jmsHeader)
 
@@ -271,7 +271,7 @@ final case class JmsDirectedMapMessage(body: Map[String, Any],
     with JmsDirectedMessage {
 
   /**
-   * Java API: adds a Jms header e.g. JMSType to [[JmsMapMessage]]
+   * Java API: adds a Jms header e.g. JmsType to [[JmsMapMessage]]
    */
   def withHeader(jmsHeader: JmsHeader): JmsDirectedMapMessage = copy(headers = headers + jmsHeader)
 
@@ -316,7 +316,7 @@ final case class JmsTextMessage(body: String,
     extends JmsAbstractTextMessage {
 
   /**
-   * Java API: adds a Jms header e.g. JMSType to [[JmsTextMessage]]
+   * Java API: adds a Jms header e.g. JmsType to [[JmsTextMessage]]
    */
   def withHeader(jmsHeader: JmsHeader): JmsTextMessage = copy(headers = headers + jmsHeader)
 
@@ -340,7 +340,7 @@ final case class JmsDirectedTextMessage(body: String,
     with JmsDirectedMessage {
 
   /**
-   * Java API: adds a Jms header e.g. JMSType to [[JmsDirectedTextMessage]]
+   * Java API: adds a Jms header e.g. JmsType to [[JmsDirectedTextMessage]]
    */
   def withHeader(jmsHeader: JmsHeader): JmsDirectedTextMessage = copy(headers = headers + jmsHeader)
 
@@ -384,7 +384,7 @@ final case class JmsObjectMessage(serializable: java.io.Serializable,
     extends JmsAbstractObjectMessage {
 
   /**
-   * Java API: adds a Jms header e.g. JMSType to [[JmsObjectMessage]]
+   * Java API: adds a Jms header e.g. JmsType to [[JmsObjectMessage]]
    */
   def withHeader(jmsHeader: JmsHeader): JmsObjectMessage = copy(headers = headers + jmsHeader)
 
@@ -402,7 +402,7 @@ final case class JmsDirectedObjectMessage(serializable: java.io.Serializable,
     with JmsDirectedMessage {
 
   /**
-   * Java API: adds a Jms header e.g. JMSType to [[JmsDirectedObjectMessage]]
+   * Java API: adds a Jms header e.g. JmsType to [[JmsDirectedObjectMessage]]
    */
   def withHeader(jmsHeader: JmsHeader): JmsDirectedObjectMessage = copy(headers = headers + jmsHeader)
 

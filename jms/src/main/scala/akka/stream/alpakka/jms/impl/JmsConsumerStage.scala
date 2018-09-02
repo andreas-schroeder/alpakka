@@ -120,7 +120,7 @@ import scala.util.{Failure, Success}
 
                     if (!listenerStopped)
                       try {
-                        handleMessage.invoke(AckEnvelope(message, session))
+                        handleMessage.invoke(new AckEnvelope(message, session))
                         session.pendingAck += 1
                         if (session.pendingAck > maxPendingAck) {
                           val action = session.ackQueue.take()
@@ -181,7 +181,7 @@ import scala.util.{Failure, Success}
                   def onMessage(message: Message): Unit =
                     if (!listenerStopped)
                       try {
-                        val envelope = TxEnvelope(message, session)
+                        val envelope = new TxEnvelope(message, session)
                         handleMessage.invoke(envelope)
                         val action = session.commitQueue.take()
                         action(envelope)

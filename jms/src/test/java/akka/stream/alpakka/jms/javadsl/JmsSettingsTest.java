@@ -27,6 +27,6 @@ public class JmsSettingsTest {
             .withTimeToLive(Duration.ofHours(1));
     // #producer-settings
 
-    assertEquals(settings.destination().get(), new Topic("target-topic"))
+    assertEquals(settings.destination().get().name(), "target-topic");
   }
 }

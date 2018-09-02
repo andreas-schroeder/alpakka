@@ -6,7 +6,7 @@ package akka.stream.alpakka.jms.impl
 import java.util.concurrent.ArrayBlockingQueue
 
 import akka.annotation.InternalApi
-import akka.stream.alpakka.jms.{Destination, DurableTopic, StopMessageListenerException, TxEnvelope}
+import akka.stream.alpakka.jms.{Destination, DurableTopic, TxEnvelope}
 import javax.jms
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -56,6 +56,8 @@ import scala.concurrent.{ExecutionContext, Future}
       }
     }
 }
+
+@InternalApi private[jms] final case class StopMessageListenerException() extends Exception("Stopping MessageListener.")
 
 @InternalApi private[jms] class JmsAckSession(override val connection: jms.Connection,
                                               override val session: jms.Session,
